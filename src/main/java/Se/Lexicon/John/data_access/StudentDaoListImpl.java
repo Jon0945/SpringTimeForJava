@@ -3,14 +3,17 @@ package Se.Lexicon.John.data_access;
 import Se.Lexicon.John.models.Student;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class StudentDaoListImpl implements StudentDao {
-    private List<Student> students;
+    private static int idCounter = 1;
+    private List<Student> students = new ArrayList<>(0);
 
     @Override
     public Student save(Student student) {
+        student.setId(idCounter++);
         students.add(student);
         return student;
     }
@@ -35,8 +38,8 @@ public class StudentDaoListImpl implements StudentDao {
         for(Student s : students) {
             if(s.getId() == id) {
                 students.remove(s);
+                break;
             }
         }
-
     }
 }

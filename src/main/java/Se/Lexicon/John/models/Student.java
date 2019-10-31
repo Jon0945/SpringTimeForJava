@@ -1,7 +1,6 @@
 package Se.Lexicon.John.models;
 
 public class Student {
-    private static int studentCounter = 1;
     private int id;
     private String name;
 
@@ -10,8 +9,17 @@ public class Student {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
+    public Student(int id, String name) {
+        this(name);
+        this.setId(id);
+    }
+
     public Student(String name) {
-        setId(studentCounter++);
         this.setName(name);
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + "\nName: " + name + '\n';
     }
 }
